@@ -29,7 +29,7 @@ body {
   color: #fff;
   padding: 2rem;
   background-color: #000005;
-  background-image: url("https://www.transparenttextures.com/patterns/stardust.png");
+  background-image: url(../resources/stardust_background.png);
 }
 
 footer {
