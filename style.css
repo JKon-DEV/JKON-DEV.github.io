@@ -1,0 +1,460 @@
+/* ===== RESET / BASE ===== */
+* {
+  box-sizing: border-box;
+}
+
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: 'Press Start 2P', monospace;
+}
+
+/* ===== SCENE ===== */
+
+#scene {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+
+  margin: 0;
+  display: block;
+  background-size: cover;
+  background-position: center;
+
+  background-repeat: no-repeat;
+  background-color: black;
+  overflow: hidden;
+}
+
+body.home #scene {
+  background-image: url(assets/website_background.png);
+}
+
+body.projects #scene {
+  background-image: url(assets/website_background.png);
+}
+
+body.blog #scene {
+  background-image: url(assets/blog_background.png);
+}
+
+body.about #scene {
+  background-image: url(assets/about_background.png);
+}
+
+body.contact #scene {
+  background-image: url(/assets/contact_background.png);
+}
+
+
+/* ===== HOTSPOTS ===== */
+.hotspot {
+  position: absolute;
+  cursor: pointer;
+  text-decoration: none;
+  outline: none;
+}
+
+/* Always-on subtle glow */
+.hotspot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 4px;
+  box-shadow: 0 0 14px rgba(120, 220, 255, 0.18);
+  opacity: 0.6;
+  transition: box-shadow 0.2s ease, opacity 0.2s ease;
+  pointer-events: none;
+}
+
+/* Hover / focus glow */
+.hotspot:hover::after,
+.hotspot:focus-visible::after {
+  box-shadow: 0 0 28px rgba(120, 220, 255, 0.65);
+  opacity: 1;
+}
+
+/* Slight brightness lift */
+.hotspot:hover,
+.hotspot:focus-visible {
+  filter: brightness(1.15);
+}
+
+/* ===== TOOLTIP ===== */
+.label {
+  position: absolute;
+  left: 50%;
+  bottom: 100%;
+  transform: translateX(-50%) translateY(6px);
+
+  background: rgba(0, 0, 0, 0.75);
+  color: #d8faff;
+  padding: 6px 10px;
+  font-size: 10px;
+  white-space: nowrap;
+
+  opacity: 0;
+  pointer-events: none;
+
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.hotspot:hover .label,
+.hotspot:focus-visible .label {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-2px);
+}
+
+/* ===== HOTSPOT POSITIONS ===== */
+
+.bookshelf {
+  top: 31%;
+  left: 50%;
+  width: 13%;
+  height: 16%;
+}
+
+.desk {
+    top: 55%;
+    left: 48%;
+    width: 26%;
+    height: 25%;
+}
+
+.bed {
+    top: 54%;
+    left: 14%;
+    width: 24%;
+    height: 14%;
+}
+
+.door {
+    top: 30%;
+    left: 37%;
+    width: 10%;
+    height: 28%;
+}
+
+.return_from_projects {
+  top: 15%;
+  left: 74%;
+  width: 5%;
+  height: 8%;
+}
+
+.return_from_contact {
+  top: 40%;
+  left: 74%;
+  width: 8%;
+  height: 23%;
+}
+
+.return_from_blog {
+  top: 29%;
+  left: 59%;
+  width: 13%;
+  height: 6%;
+}
+
+.discord {
+  top: 42%;
+  left: 46%;
+  width: 8%;
+  height: 14%;
+}
+
+
+.email {
+  top: 34%;
+  left: 21%;
+  width: 9%;
+  height: 16%;
+}
+
+
+.about-content {
+  position: relative;
+  scale: 2.5;
+  top: 45%;
+  left: 0%;
+  height: 50%;
+}
+
+.about-hint {
+  opacity: 0.75;
+  font-size: 12px;
+  text-shadow: #fff 0px 0px 4px;
+  text-align: center;
+}
+
+
+/* ===== MOBILE FALLBACK ===== */
+@media (max-width: 768px) {
+  #scene {
+    background-image: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+  }
+
+  .hotspot {
+    position: static;
+    width: auto;
+    height: auto;
+    filter: none;
+  }
+
+  .hotspot::after {
+    display: none;
+  }
+
+  .label {
+    position: static;
+    opacity: 1;
+    transform: none;
+    background: none;
+    color: #9fefff;
+    font-size: 12px;
+  }
+}
+
+/* ==============================
+   PAUSE MENU OVERLAY (SUBPAGES)
+   ============================== */
+   
+.overlay {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  z-index: 100;
+
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+}
+
+.menu-title {
+  position: absolute;
+  top: 17%;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: 320px;   /* adjust */
+  height: 80px;   /* adjust */
+
+  background-image: url(assets/project_title.png); /* adjust */
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  z-index: 5;
+  pointer-events: none;
+}
+
+
+/* The frame image (with transparent center) */
+.menu-frame {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 100vw;
+  aspect-ratio: 16 / 9;
+  height: auto;
+
+  background-image: url(assets/menu_overlay.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% auto;
+
+  overflow: hidden;
+
+  /* Depth */
+  filter:
+    drop-shadow(0 18px 35px rgba(0,0,0,0.55))
+    blur(0.4px)
+    saturate(95%)
+    brightness(95%);
+
+  /* Helps blend edges into the blurred world */
+  mask-image: radial-gradient(
+    ellipse at center,
+    rgba(0,0,0,1) 88%,
+    rgba(0,0,0,0) 100%
+  );
+}
+
+.menu-icon {
+  position: absolute;
+  width: 128px;
+  height: 128px;
+  cursor: pointer;
+  transition: transform 0.15s ease, filter 0.15s ease;
+}
+
+.menu-icon img {
+  width: 100%;
+  height: 100%;
+  image-rendering: pixelated;
+}
+
+.menu-icon:hover {
+  transform: scale(1.1);
+  filter: drop-shadow(0 0 10px rgba(255, 230, 160, 0.7));
+}
+
+.menu-icon.pos-1 {
+  top: 30%;
+  left: 30%;
+}
+
+.menu-description {
+  position: absolute;
+  bottom: 11%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  padding: 10px 28px;
+  text-align: center;
+  font-size: 28px;
+  color: #f5e6b8;
+  border-radius: 8px;
+  text-shadow: 1px 1px 2px black;
+  pointer-events: none;
+}
+
+
+.blog-frame {
+  position: absolute;
+  inset: 0;                /* fill overlay */
+  margin: auto;
+
+  width: 100%;
+  max-width: 1100px;      /* tune to taste */
+  aspect-ratio: 9 / 16;  /* matches tall parchment better */
+
+  background-image: url(/assets/blog_scroll.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 80%;
+
+  filter: drop-shadow(0 18px 35px rgba(0,0,0,0.55));
+}
+
+.blog-content {
+  position: absolute;
+  top: 32%;
+  left: 26%;
+  right: 27%;
+  bottom: 28%;
+  padding: 24px 28px;
+  overflow-y: auto;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: #3b2f1e;
+}
+
+
+#page-fade {
+  position: fixed;
+  inset: 0;
+  background: black;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 9999;
+  transition: opacity 600ms ease;
+}
+
+#page-fade.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+
+
+/* Attempting responsive styles for mobile devices */
+@media (max-width: 1080px) {
+  @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Bitcount:wght@100..900&display=swap');
+
+  .bitcount-header {
+    color: #bbe1ff;
+    line-height: normal;
+    text-align: center;
+    font-family: "Bitcount", system-ui;
+    font-optical-sizing: auto;
+    font-weight: 400; /* Adjust between 100–900 */
+    font-style: normal;
+    font-variation-settings:
+      "slnt" 1,
+      "CRSV" 0.5,
+      "ELSH" 1,
+      "ELXP" 1;
+  }
+
+  .not-implemented {
+    text-decoration: line-through solid rgb(168, 56, 56);
+  }
+
+  body {
+    letter-spacing: -0.5px;
+    line-height: -0.5px;
+    text-align: center;
+    font-family: 'VT323', monospace;
+    font-size: 1.25rem;
+    color: #fff;
+    padding: 2rem;
+    background-color: #000005;
+    background-image: url(assets/stardust_background.png);
+  }
+
+  footer {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    padding: 1rem;
+    color: #868383;
+    text-align: right;
+    background: transparent; 
+    z-index: 10; 
+  }
+
+  a {
+    color: #9cf;
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: #6ef;
+    text-decoration: underline;
+  }
+
+  nav {
+    text-align: center;
+    line-height: normal;
+    margin-bottom: 2rem;
+  }
+
+  nav a {
+    margin-right: 1rem;
+    background: #222;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    transition: all 0.2s ease-in-out;
+  }
+
+  nav a:hover {
+    background: #444;
+  }
+}

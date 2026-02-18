@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projects</title>
+
+  <link rel="stylesheet" href="../style.css" />
+  <script type="module" src="/scripts/sound.js"></script>
+</head>
+
+<body class="projects">
+  <div id="page-fade" class="active"></div>
+
+  <main id="scene" aria-label="Background scene"></main>
+
+  <div class="overlay">
+    <div class="menu-frame" role="dialog" aria-modal="true">
+      <div class="menu-content">
+        <div class="menu-title" aria-hidden="true"></div>
+          <div class="menu-description" id="menuDescription">
+              Select a project
+          </div>
+      </div>
+
+      <a href="/climbing_companion" class="menu-icon pos-1" aria-label="Climbing Companion project" data-desc="Climbing Companion">
+        <img src="/assets/climbing_companion.webp" alt="Project 1 icon" />
+      </a>
+
+      <a href="../index.html"
+         class="hotspot return_from_projects"
+         data-sound="close"
+         aria-label="Return to main menu">
+        <span class="label">Return</span>
+      </a>
+
+    </div>
+  </div>
+</body>
+</html>

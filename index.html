@@ -1,35 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>JKonDEV</title>
-  <link rel="stylesheet" href="css/style.css">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <title>JKON — Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css" />
+  <script src="scripts/sound.js"></script>
 </head>
-<body>
-  <header>
-    <h1 class="bitcount-header">Welcome :3</h1>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="blog.html">Blog</a>
-      <a href="projects.html">Projects</a>
-      <a class="not-implemented" href="index.html">Gallery</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-  </header>
+<body class="home">
+  <div id="page-fade" class="active"></div>
 
-  <main>
-    <section>
-      <h2>About Me</h2>
-      <p>Hey, I'm Jared or some form of JKON online!</p>
-      <p>I am very excited to welcome you to my webpage where I will document my life, projects i've been working on and all sorts of things!</p>
-      <p>Thankyou for taking the time to visit :3</p>
-    </section>
+  <main id="scene">
+
+    <!-- Projects → Bookshelf -->
+    <a href="projects/index.html"
+       class="hotspot bookshelf"
+       data-sound="open"
+       aria-label="Projects">
+      <span class="label">Projects</span>
+    </a>
+
+    <!-- Blog → Desk -->
+    <a href="/blog"
+       class="hotspot desk"
+       data-sound="blog"
+       aria-label="Blog">
+      <span class="label">Blog</span>
+    </a>
+
+    <!-- About → Fireplace -->
+    <a href="/about"
+       class="hotspot bed"
+       data-sound="about"
+       aria-label="About Me">
+      <span class="label">About Me</span>
+    </a>
+
+    <!-- Contact → Door  -->
+    <a href="/contact"
+       class="hotspot door"
+       data-sound="contact"
+       aria-label="Contact">
+      <span class="label">Contact</span>
+    </a>
+
   </main>
-
-  <footer>
-    <p>© 2025 Jared Jackson</p>
-  </footer>
-  <script async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
 </body>
 </html>
