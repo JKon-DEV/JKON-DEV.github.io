@@ -1,4 +1,4 @@
-// Requires refactoring and seperation of concerns
+// Requires refactoring and separation of concerns.
 // Sound and transition management scripts.
 
 const sounds = {
@@ -42,7 +42,40 @@ function fadeNavigate(linkEl, sound) {
   }, 700);
 }
 
+function getPreferredViewMode() {
+  const savedMode = localStorage.getItem('viewMode');
+  if (savedMode === 'basic' || savedMode === 'stylized') return savedMode;
+  return window.matchMedia('(max-width: 768px)').matches ? 'basic' : 'stylized';
+}
+
+function applyViewMode(mode) {
+  const isBasic = mode === 'basic';
+  document.body.classList.toggle('view-basic', isBasic);
+  document.body.classList.toggle('view-stylized', !isBasic);
+
+  const toggle = document.querySelector('.style-toggle');
+  if (!toggle) return;
+  toggle.setAttribute('aria-pressed', String(isBasic));
+  toggle.textContent = isBasic ? 'Stylized view' : 'Basic view';
+}
+
+function initStyleToggle() {
+  const toggle = document.createElement('button');
+  toggle.type = 'button';
+  toggle.className = 'style-toggle';
+  document.body.append(toggle);
+
+  applyViewMode(getPreferredViewMode());
+
+  toggle.addEventListener('click', () => {
+    const nextMode = document.body.classList.contains('view-basic') ? 'stylized' : 'basic';
+    localStorage.setItem('viewMode', nextMode);
+    applyViewMode(nextMode);
+  });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
+  initStyleToggle();
   fadeInOnLoad();
 
   // Click (delegated)
@@ -50,9 +83,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const a = e.target.closest('a.hotspot');
     if (!a) return;
 
-    e.preventDefault();
-
     const key = a.dataset.sound || 'open';
+    const target = new URL(a.href);
+    const isSameOriginPage = target.origin === window.location.origin &&
+      (target.protocol === 'http:' || target.protocol === 'https:');
+
+    if (!isSameOriginPage) {
+      playSound(sounds[key] || sounds.open);
+      return;
+    }
+
+    e.preventDefault();
     fadeNavigate(a, sounds[key] || sounds.open);
   });
 
@@ -64,23 +105,23 @@ document.addEventListener('DOMContentLoaded', () => {
       playSound(sounds.hover);
     }, true);
   }
+
+  document.querySelectorAll('.menu-icon').forEach(icon => {
+    const description = document.getElementById('menuDescription');
+    if (!description) return;
+
+    icon.addEventListener('mouseenter', () => {
+      description.textContent = icon.dataset.desc;
+      playSound(sounds.hover);
+    });
+    icon.addEventListener('mouseleave', () => {
+      description.textContent = "Select a project";
+    });
+  });
 });
 
 window.addEventListener('pageshow', () => {
   const fade = document.getElementById('page-fade');
   if (fade) fade.classList.remove('active');
 });
-
-
-
-document.querySelectorAll('.menu-icon').forEach(icon => {
-  icon.addEventListener('mouseenter', () => {
-    document.getElementById('menuDescription').textContent = icon.dataset.desc;
-    playSound(sounds.hover);
-  });
-   icon.addEventListener('mouseleave', () => {
-    document.getElementById('menuDescription').textContent = "Select a project";
-  });
-});
-
 

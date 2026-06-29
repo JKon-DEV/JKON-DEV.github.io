@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contact</title>
 
-  <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="/style.css" />
   <script type="module" src="/scripts/sound.js"></script>
 
 </head>
@@ -13,19 +13,51 @@
   <div id="page-fade" class="active"></div>
 
   <main id="scene" aria-label="Background scene">
-  <a href="../index.html" class="hotspot return_from_contact" aria-label="Return to main menu" data-sound="contact">
-    <span class="label">Return</span>
-  </a>
+    <section class="basic-page" aria-labelledby="contact-title">
+      <div class="basic-page-header">
+        <p class="basic-kicker">Contact</p>
+        <h1 id="contact-title">Get In Touch</h1>
+        <p>
+          The easiest way to reach me is by email. Discord is also available for
+          quick messages.
+        </p>
+      </div>
 
-  <a href="https://discordapp.com/users/271226438626050048" class="hotspot discord" aria-label="Discord Link">
-    <span class="label">Discord</span>
-  </a>
+      <div class="basic-card-grid two-column">
+        <article class="basic-card">
+          <h2>Email</h2>
+          <p>Best for project, internship, and professional contact.</p>
+          <div class="basic-link-row">
+            <a href="mailto:jared8454@gmail.com">jared8454@gmail.com</a>
+          </div>
+        </article>
 
-  <a href="mailto:jared8454@gmail.com" class="hotspot email" aria-label="Email Link">
-    <span class="label">Email</span>
-  </a>
+        <article class="basic-card">
+          <h2>Discord</h2>
+          <p>Good for quick follow-ups or informal messages.</p>
+          <div class="basic-link-row">
+            <a href="https://discordapp.com/users/271226438626050048">Open Discord</a>
+          </div>
+        </article>
+      </div>
+
+      <div class="basic-link-row page-actions">
+        <a href="/">Back Home</a>
+      </div>
+    </section>
+
+    <a href="/" class="hotspot return_from_contact" aria-label="Return to main menu" data-sound="contact">
+      <span class="label">Return</span>
+    </a>
+
+    <a href="https://discordapp.com/users/271226438626050048" class="hotspot discord" aria-label="Discord Link">
+      <span class="label">Discord</span>
+    </a>
+
+    <a href="mailto:jared8454@gmail.com" class="hotspot email" aria-label="Email Link">
+      <span class="label">Email</span>
+    </a>
   
   </main>
-  </div>
 </body>
 </html>
