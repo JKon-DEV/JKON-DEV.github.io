@@ -42,7 +42,40 @@ function fadeNavigate(linkEl, sound) {
   }, 700);
 }
 
+function getPreferredViewMode() {
+  const savedMode = localStorage.getItem('viewMode');
+  if (savedMode === 'basic' || savedMode === 'stylized') return savedMode;
+  return window.matchMedia('(max-width: 768px)').matches ? 'basic' : 'stylized';
+}
+
+function applyViewMode(mode) {
+  const isBasic = mode === 'basic';
+  document.body.classList.toggle('view-basic', isBasic);
+  document.body.classList.toggle('view-stylized', !isBasic);
+
+  const toggle = document.querySelector('.style-toggle');
+  if (!toggle) return;
+  toggle.setAttribute('aria-pressed', String(isBasic));
+  toggle.textContent = isBasic ? 'Stylized view' : 'Basic view';
+}
+
+function initStyleToggle() {
+  const toggle = document.createElement('button');
+  toggle.type = 'button';
+  toggle.className = 'style-toggle';
+  document.body.append(toggle);
+
+  applyViewMode(getPreferredViewMode());
+
+  toggle.addEventListener('click', () => {
+    const nextMode = document.body.classList.contains('view-basic') ? 'stylized' : 'basic';
+    localStorage.setItem('viewMode', nextMode);
+    applyViewMode(nextMode);
+  });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
+  initStyleToggle();
   fadeInOnLoad();
 
   // Click (delegated)

@@ -11,6 +11,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const img = document.getElementById('about-slide');
   const fade = document.getElementById('page-fade');
   const clickArea = document.querySelector('.about-content');
+  const basicMedia = window.matchMedia('(max-width: 768px)');
+
+  if (!img || !clickArea || basicMedia.matches || document.body.classList.contains('view-basic')) return;
 
   function show() {
     img.src = slides[i];
@@ -25,7 +28,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const nextSound = new Audio('/assets/dialogue_next.wav')
   const dialogueFinishSound = new Audio('/assets/dialogue_done.wav')
 
+  function isStylizedActive() {
+    return !basicMedia.matches && !document.body.classList.contains('view-basic');
+  }
+
   function next() {
+    if (!isStylizedActive()) return;
 
     if (i < slides.length - 1) {
       i += 1;
