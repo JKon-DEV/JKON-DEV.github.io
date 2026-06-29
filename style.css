@@ -564,6 +564,14 @@ body.view-basic .basic-card p {
   line-height: 1.65;
 }
 
+body.view-basic .blog-post-card {
+  max-width: 820px;
+}
+
+body.view-basic .blog-post-card h2 {
+  margin: 8px 0 0;
+}
+
 body.view-basic .basic-card-icon {
   width: 88px;
   height: 88px;
@@ -960,6 +968,14 @@ body.view-basic .about-hint {
     margin: 0;
     color: #3d4855;
     line-height: 1.65;
+  }
+
+  .blog-post-card {
+    max-width: 100%;
+  }
+
+  .blog-post-card h2 {
+    margin: 8px 0 0;
   }
 
   .basic-card-icon {
