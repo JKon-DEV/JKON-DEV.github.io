@@ -1,4 +1,4 @@
-// Requires refactoring and seperation of concerns
+// Requires refactoring and separation of concerns.
 // Sound and transition management scripts.
 
 const sounds = {
@@ -50,9 +50,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const a = e.target.closest('a.hotspot');
     if (!a) return;
 
-    e.preventDefault();
-
     const key = a.dataset.sound || 'open';
+    const target = new URL(a.href);
+    const isSameOriginPage = target.origin === window.location.origin &&
+      (target.protocol === 'http:' || target.protocol === 'https:');
+
+    if (!isSameOriginPage) {
+      playSound(sounds[key] || sounds.open);
+      return;
+    }
+
+    e.preventDefault();
     fadeNavigate(a, sounds[key] || sounds.open);
   });
 
@@ -64,23 +72,23 @@ document.addEventListener('DOMContentLoaded', () => {
       playSound(sounds.hover);
     }, true);
   }
+
+  document.querySelectorAll('.menu-icon').forEach(icon => {
+    const description = document.getElementById('menuDescription');
+    if (!description) return;
+
+    icon.addEventListener('mouseenter', () => {
+      description.textContent = icon.dataset.desc;
+      playSound(sounds.hover);
+    });
+    icon.addEventListener('mouseleave', () => {
+      description.textContent = "Select a project";
+    });
+  });
 });
 
 window.addEventListener('pageshow', () => {
   const fade = document.getElementById('page-fade');
   if (fade) fade.classList.remove('active');
 });
-
-
-
-document.querySelectorAll('.menu-icon').forEach(icon => {
-  icon.addEventListener('mouseenter', () => {
-    document.getElementById('menuDescription').textContent = icon.dataset.desc;
-    playSound(sounds.hover);
-  });
-   icon.addEventListener('mouseleave', () => {
-    document.getElementById('menuDescription').textContent = "Select a project";
-  });
-});
-
 

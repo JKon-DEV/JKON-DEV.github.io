@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bitcount:wght@100..900&display=swap');
+
 /* ===== RESET / BASE ===== */
 * {
   box-sizing: border-box;
@@ -34,19 +38,19 @@ body {
 }
 
 body.home #scene {
-  background-image: url(assets/website_background.png);
+  background-image: url(/assets/website_background.png);
 }
 
 body.projects #scene {
-  background-image: url(assets/website_background.png);
+  background-image: url(/assets/website_background.png);
 }
 
 body.blog #scene {
-  background-image: url(assets/blog_background.png);
+  background-image: url(/assets/blog_background.png);
 }
 
 body.about #scene {
-  background-image: url(assets/about_background.png);
+  background-image: url(/assets/about_background.png);
 }
 
 body.contact #scene {
@@ -253,7 +257,7 @@ body.contact #scene {
   width: 320px;   /* adjust */
   height: 80px;   /* adjust */
 
-  background-image: url(assets/project_title.png); /* adjust */
+  background-image: url(/assets/project_title.png); /* adjust */
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -274,7 +278,7 @@ body.contact #scene {
   aspect-ratio: 16 / 9;
   height: auto;
 
-  background-image: url(assets/menu_overlay.png);
+  background-image: url(/assets/menu_overlay.png);
   background-repeat: no-repeat;
   background-position: center;
   background-size: 100% auto;
@@ -385,9 +389,6 @@ body.contact #scene {
 
 /* Attempting responsive styles for mobile devices */
 @media (max-width: 1080px) {
-  @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
-  @import url('https://fonts.googleapis.com/css2?family=Bitcount:wght@100..900&display=swap');
-
   .bitcount-header {
     color: #bbe1ff;
     line-height: normal;
@@ -408,15 +409,15 @@ body.contact #scene {
   }
 
   body {
-    letter-spacing: -0.5px;
-    line-height: -0.5px;
+    letter-spacing: 0;
+    line-height: normal;
     text-align: center;
     font-family: 'VT323', monospace;
     font-size: 1.25rem;
     color: #fff;
     padding: 2rem;
     background-color: #000005;
-    background-image: url(assets/stardust_background.png);
+    background-image: url(/assets/stardust_background.png);
   }
 
   footer {
